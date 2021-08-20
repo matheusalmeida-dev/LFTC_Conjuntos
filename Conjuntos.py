@@ -3,15 +3,15 @@ class Conjunto:
         self.elementos = []
         for item in args:
             if isinstance(item, list):
-                for item2 in item:
-                    self.elementos.append(item2)
+                self.elementos += item
             elif isinstance(item, Conjunto):
                 self.elementos += item.elementos
             else:
                 self.elementos.append(item)
+        self.elementos = list(set(self.elementos))
 
     def tamanho(self):
-        print(len(self.elementos))
+        return len(self.elementos)
 
     def getElementos(self):
         return self.elementos
@@ -37,40 +37,25 @@ class Conjunto:
                 return True
         return False
 
-'- - - - - - -'
+    def eh_igual(self, conjunto):
+        return self.elementos == conjunto.elementos
 
-A = Conjunto(1, 2, 3, 4, 5)
-B = Conjunto([1, 2, 3])
-C = Conjunto(A)
-D = Conjunto()
+    def eh_vazio(self):
+        return self.elementos == []
+    
+    def uniao(self, conjunto):
+        return Conjunto(self, conjunto)
 
-print("A =", A.getElementos())
-print("B =", B.getElementos())
-print("C =", C.getElementos())
-print("D =", D.getElementos())
+    def intersecao(self, conjunto):
+        aux = []
+        for elemento in self.elementos:
+            if elemento in conjunto.elementos:
+                aux.append(elemento)
+        return Conjunto(aux)
 
-A.tamanho()
-B = Conjunto(1, 2, A)
-print("B =", B.getElementos())
-
-print("A contem: ", A.possui(2))
-print(A.possui(3))
-print(A.possui(10))
-
-print("TESTES CONTÉM")
-A = Conjunto(1, 2)
-B = Conjunto(1, 2, 3, 4)
-C = Conjunto(5, 6, 7)
-print(A.contem(A)) # saída é: True
-print(B.contem(A)) # saída é: True
-print(C.contem(A)) # saída é: False
-
-print("TESTES CONTEM_PROPRIAMENTE")
-
-A = Conjunto(1, 2, 3)
-B = Conjunto(1, 2)
-print(A.getElementos())
-print(B.getElementos())
-print(A.contem_propriamente(B)) # saída é: True
-print(A.contem_propriamente(A)) # saída é: False
-print(B.contem_propriamente(A)) # saída é: False
+    def diferenca(self, conjunto):
+        aux = []
+        for elemento in self.elementos:
+            if not elemento in conjunto.elementos:
+                aux.append(elemento)
+        return Conjunto(aux)
