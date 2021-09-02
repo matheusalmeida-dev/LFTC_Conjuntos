@@ -79,3 +79,4 @@ class Conjunto:
                 aux.append(Conjunto(item))
             n += 1
         return Conjunto(aux)
+'a'
