@@ -1,14 +1,19 @@
+from itertools import combinations
+
+def ordem(e):
+    return len(e.getElementos())
+
 class Conjunto:
     def __init__(self, *args):
         self.elementos = []
         for item in args:
-            if isinstance(item, list):
-                self.elementos += item
+            if isinstance(item, list) or isinstance(item, tuple):
+                self.elementos += list(item)
             elif isinstance(item, Conjunto):
                 self.elementos += item.elementos
             else:
                 self.elementos.append(item)
-        self.elementos = list(set(self.elementos))
+        self.elementos = list({k: None for k in self.elementos}.keys())
 
     def tamanho(self):
         return len(self.elementos)
@@ -58,4 +63,19 @@ class Conjunto:
         for elemento in self.elementos:
             if not elemento in conjunto.elementos:
                 aux.append(elemento)
+        return Conjunto(aux)
+
+    def complemento(self, conjunto):
+        return Conjunto(list(set(conjunto.elementos)-set(self.elementos)))
+
+    def conjunto_das_partes(self):
+        itens = self.getElementos()
+        n = 1
+        aux = []
+        aux.append(Conjunto([]))
+        while n <= self.tamanho():
+            lista = combinations(itens, n)
+            for item in lista:
+                aux.append(Conjunto(item))
+            n += 1
         return Conjunto(aux)

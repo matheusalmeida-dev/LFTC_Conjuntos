@@ -67,3 +67,19 @@ A = Conjunto(1, 2, 3)
 B = Conjunto(1, 4)
 C = A.diferenca(B) # um novo conjunto com os elementos: 2, 3
 print(C.getElementos())
+
+print("TESTES COMPLEMENTO")
+U = Conjunto(1, 2, 3, 4, 5)
+A = Conjunto(1, 2)
+C = A.complemento(U) # um novo conjunto com os elementos: 3, 4, 5
+print(C.getElementos())
+
+print("TESTES CONJUNTO_DAS_PARTES")
+A = Conjunto(1, 2, 3)
+P = A.conjunto_das_partes()
+print(P.getElementos()[0].getElementos())
+# P é um novo conjunto com os elementos:
+# Conjunto(), 
+# Conjunto(1), Conjunto(2), Conjunto(3), 
+# Conjunto(1, 2), Conjunto(1, 3), Conjunto(2, 3), 
+# Conjunto(1, 2, 3)
