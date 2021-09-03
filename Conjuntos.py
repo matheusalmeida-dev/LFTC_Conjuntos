@@ -1,4 +1,4 @@
-from itertools import combinations
+from itertools import combinations, product
 
 def ordem(e):
     return len(e.getElementos())
@@ -8,9 +8,13 @@ class Conjunto:
         self.elementos = []
         for item in args:
             if isinstance(item, list) or isinstance(item, tuple):
-                self.elementos += list(item)
+                for elemento in item:
+                    self.elementos.append(elemento)
             elif isinstance(item, Conjunto):
-                self.elementos += item.elementos
+                if not self.elementos:
+                    self.elementos += item.elementos
+                else:
+                    self.elementos.append(item)
             else:
                 self.elementos.append(item)
         self.elementos = list({k: None for k in self.elementos}.keys())
@@ -34,12 +38,10 @@ class Conjunto:
         return True
 
     def contem_propriamente(self, conjunto):
-        for elemento in conjunto.elementos:
-            if not self.possui(elemento):
-                return False
-        for elemento in self.elementos:
-            if not conjunto.possui(elemento):
-                return True
+        if self.contem(conjunto):
+            for elemento in self.elementos:
+                if not conjunto.possui(elemento):
+                    return True
         return False
 
     def eh_igual(self, conjunto):
@@ -49,7 +51,13 @@ class Conjunto:
         return self.elementos == []
     
     def uniao(self, conjunto):
-        return Conjunto(self, conjunto)
+        lista = []
+        for item in conjunto.elementos:
+            if isinstance(item, Conjunto):
+                item.uniao(item)
+            else:
+                lista.append(item)
+        return Conjunto(self, lista)
 
     def intersecao(self, conjunto):
         aux = []
@@ -66,7 +74,11 @@ class Conjunto:
         return Conjunto(aux)
 
     def complemento(self, conjunto):
-        return Conjunto(list(set(conjunto.elementos)-set(self.elementos)))
+        aux = []
+        for elemento in conjunto.elementos:
+            if not elemento in self.elementos:
+                aux.append(elemento)
+        return Conjunto(aux)
 
     def conjunto_das_partes(self):
         itens = self.getElementos()
@@ -79,4 +91,31 @@ class Conjunto:
                 aux.append(Conjunto(item))
             n += 1
         return Conjunto(aux)
-'a'
+
+    def produto_cartesiano(self, conjunto):
+        itens = self.getElementos()
+        aux = []
+        lista = product(itens, conjunto.elementos)
+        for item in lista:
+            aux.append(item)
+        return Conjunto(aux)
+
+
+    def string(self):
+        resposta = '{'
+        for item in self.elementos:
+            if isinstance(item, list):
+                for elemento in item:
+                    if not isinstance(elemento, Conjunto):
+                        resposta += str(elemento) + ', '
+                    else:
+                        resposta += item.string()
+            elif isinstance(item, Conjunto):
+                resposta += item.string() + ', '
+            else:
+                if isinstance(item, tuple) and len(item)== 1:
+                    resposta += str(item[0]) + ', '
+                else:
+                    resposta += str(item) + ', '
+        resposta += '}'
+        return resposta.replace(', }', '}')
