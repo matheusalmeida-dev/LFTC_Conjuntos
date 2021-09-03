@@ -44,7 +44,7 @@ print(B.contem_propriamente(A)) # saída é: False
 
 print('TESTES EH_IGUAL')
 A = Conjunto(1, 2)
-B = Conjunto(1, 2)
+B = Conjunto(2, 1)
 C = Conjunto(1, 2, 3)
 print(A.eh_igual(B)) # saída é: True
 print(A.eh_igual(C)) # saída é: False

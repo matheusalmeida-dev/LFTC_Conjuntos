@@ -45,7 +45,13 @@ class Conjunto:
         return False
 
     def eh_igual(self, conjunto):
-        return self.elementos == conjunto.elementos
+        for elemento in self.elementos:
+                if not conjunto.possui(elemento):
+                    return False
+        for elemento in conjunto.elementos:
+                if not self.possui(elemento):
+                    return False
+        return True
 
     def eh_vazio(self):
         return self.elementos == []
