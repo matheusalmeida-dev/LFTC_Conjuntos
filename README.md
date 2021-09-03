@@ -1,5 +1,5 @@
 # LFTC_Conjuntos
-Atividade feita por Matheus Almeida, Rivaldo Soares e Fransueldes.
+Atividade feita por Matheus Almeida, Matheus Crisanto, Rivaldo Soares e Fransueldes.
 # A atividade
 Siga o documento anexo, que descreve a API de Conjuntos, ou seja, a definição da classe Conjunto, seus atributos e métodos, para implementar a classe Conjunto.  
   
