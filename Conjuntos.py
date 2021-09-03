@@ -115,7 +115,15 @@ class Conjunto:
             else:
                 if isinstance(item, tuple) and len(item)== 1:
                     resposta += str(item[0]) + ', '
+                elif isinstance(item, tuple):
+                    resposta += '('
+                    for elemento in item:
+                        if isinstance(elemento, Conjunto):
+                            resposta += elemento.string()
+                        else:
+                            resposta += str(elemento) + ', '
+                    resposta += '), '
                 else:
                     resposta += str(item) + ', '
         resposta += '}'
-        return resposta.replace(', }', '}')
+        return resposta.replace(', }', '}').replace(', )', ')')
