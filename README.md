@@ -6,7 +6,7 @@ Siga o documento anexo, que descreve a API de Conjuntos, ou seja, a definição 
 Para essa atividade é necessário implementar a classe Conjunto com:  
 * atributo: elementos  
 * construtor  
-* métodos: tamanho, possui e contem, contem_propriamente, eh_igual, eh_vazio, uniao, intersecao, diferenca  
+* métodos: tamanho, possui e contem, contem_propriamente, eh_igual, eh_vazio, uniao, intersecao, diferenca, conjunto das partes, produto cartesiano, string (representação do conjunto na forma de string)
   
 Se o grupo conseguir atender a essa regra, pode implementar outros métodos.  
   
