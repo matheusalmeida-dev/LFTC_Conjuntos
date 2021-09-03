@@ -1,12 +1,12 @@
 # LFTC_Conjuntos
-Atividade feita por Matheus Almeida, Rivaldo Soares e Fransueldes.
+Atividade feita por Matheus Almeida, Matheus Crisanto, Rivaldo Soares e Fransueldes.
 # A atividade
 Siga o documento anexo, que descreve a API de Conjuntos, ou seja, a definição da classe Conjunto, seus atributos e métodos, para implementar a classe Conjunto.  
   
 Para essa atividade é necessário implementar a classe Conjunto com:  
 * atributo: elementos  
 * construtor  
-* métodos: tamanho, possui e contem, contem_propriamente, eh_igual, eh_vazio, uniao, intersecao, diferenca, conjunto das partes, produto cartesiano, string (representação do conjunto na forma de string)
+* métodos: tamanho, possui e contem, contem_propriamente, eh_igual, eh_vazio, uniao, intersecao, diferenca  
   
 Se o grupo conseguir atender a essa regra, pode implementar outros métodos.  
   
